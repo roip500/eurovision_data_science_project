@@ -2,8 +2,8 @@ import pandas as pd
 
 def merge_datasets():
     # Load datasets
-    df2 = pd.read_csv('../datasets/eurovision_dataset_2.csv')
-    df1 = pd.read_csv('../datasets/eurovision_dataset_1.csv')
+    df2 = pd.read_csv('./datasets/eurovision_dataset_2.csv')
+    df1 = pd.read_csv('./datasets/eurovision_dataset_1.csv')
 
     # Rename df2 for consistency
     df1_renamed = df1.rename(columns={

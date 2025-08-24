@@ -93,8 +93,8 @@ def process_song(contestant_id, contestant, placements, running_orders, dancers_
 
 
 def main():
-    eurovision_data = load_json_file('../basic_datasets/eurovision.json')
-    country_codes = load_json_file('../basic_datasets/countries.json')
+    eurovision_data = load_json_file('./basic_datasets/eurovision.json')
+    country_codes = load_json_file('./basic_datasets/countries.json')
 
     songs_data = []
 
@@ -110,7 +110,7 @@ def main():
             )
             songs_data.append(song_entry)
 
-    save_to_csv(songs_data, '../datasets/eurovision_dataset_2.csv')
+    save_to_csv(songs_data, './datasets/eurovision_dataset_2.csv')
     print(f"Saved {len(songs_data)} songs to eurovision_song_2.csv")
 
 
