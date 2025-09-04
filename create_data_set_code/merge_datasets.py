@@ -57,18 +57,15 @@ def merge_datasets():
     })
 
     # Merge to bring in sexuality info
-    merged_with_sexuality = pd.merge(
+    final_db = pd.merge(
         merged_tb,
         lgbtq_df[['artist', 'country', 'year', 'artist sexuality']],
         on=['artist', 'country', 'year'],
         how='left'
     )
 
-    # Fill missing sexuality with "straight"
-    merged_with_sexuality['artist sexuality'] = merged_with_sexuality['artist sexuality'].fillna('straight')
-
     # Save final dataset
-    merged_with_sexuality.to_csv('datasets/final_merged.csv', index=False)
+    final_db.to_csv('datasets/final_merged.csv', index=False)
 
     print("Added 'artist sexuality' column. Saved to datasets/final_merged_with_sexuality.csv")
 

@@ -67,13 +67,14 @@ def get_top_3_words(lyrics):
     return ', '.join(top_words)
 
 
-def process_song(contestant_id, contestant, placements, running_orders, dancers_count, country_codes, year):
+def process_song(contestant_id, contestant, placements, running_orders, dancers_count, country_codes, year, host):
     main_language, all_languages, lyrics_original, lyrics_english = get_lyrics_data(contestant.get('lyrics', []))
     country_code = contestant.get('country', '??')
     country_name = country_codes.get(country_code, country_code)
 
     return {
         'year': year,
+        'host': host,
         'country': country_name,
         'artist': contestant.get('artist'),
         'song': contestant.get('song'),
@@ -100,13 +101,14 @@ def main():
 
     for contest in eurovision_data:
         year = contest.get('year')
+        host = contest.get('city')
         rounds = contest.get('rounds', [])
         contestants = {c['id']: c for c in contest.get('contestants', [])}
         placements, running_orders, dancers_count = extract_placements_and_running(rounds)
 
         for contestant_id, contestant in contestants.items():
             song_entry = process_song(
-                contestant_id, contestant, placements, running_orders, dancers_count, country_codes, year
+                contestant_id, contestant, placements, running_orders, dancers_count, country_codes, year, host
             )
             songs_data.append(song_entry)
 
