@@ -2,8 +2,8 @@ import pandas as pd
 
 def merge_datasets():
     # Load datasets
-    df2 = pd.read_csv('../datasets/eurovision_dataset_2.csv')
-    df1 = pd.read_csv('../datasets/eurovision_dataset_1.csv')
+    df2 = pd.read_csv('./datasets/eurovision_dataset_2.csv')
+    df1 = pd.read_csv('./datasets/eurovision_dataset_1.csv')
 
     # Rename df2 for consistency
     df1_renamed = df1.rename(columns={
@@ -57,18 +57,15 @@ def merge_datasets():
     })
 
     # Merge to bring in sexuality info
-    merged_with_sexuality = pd.merge(
+    final_db = pd.merge(
         merged_tb,
         lgbtq_df[['artist', 'country', 'year', 'artist sexuality']],
         on=['artist', 'country', 'year'],
         how='left'
     )
 
-    # Fill missing sexuality with "straight"
-    merged_with_sexuality['artist sexuality'] = merged_with_sexuality['artist sexuality'].fillna('straight')
-
     # Save final dataset
-    merged_with_sexuality.to_csv('datasets/final_merged.csv', index=False)
+    final_db.to_csv('datasets/final_merged.csv', index=False)
 
     print("Added 'artist sexuality' column. Saved to datasets/final_merged_with_sexuality.csv")
 
