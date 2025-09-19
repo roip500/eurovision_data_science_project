@@ -73,8 +73,8 @@ def evaluate_from_predictions(preds_csv: Path, meta_json: Path, model: str, top_
 def main():
     import argparse
     p = argparse.ArgumentParser(description="Evaluate saved CV predictions for a chosen model column.")
-    p.add_argument("--preds", type=Path, default=Path("artifacts/cv_predictions.csv"))
-    p.add_argument("--meta", type=Path, default=Path("artifacts/esc_features_meta.json"))
+    p.add_argument("--preds", type=Path, default=Path("artifacts/3/cv_predictions.csv"))
+    p.add_argument("--meta", type=Path, default=Path("artifacts/3/esc_features_meta.json"))
     p.add_argument("--model", choices=["lr_text_tab", "hgb_tabular", "ensemble"], default="ensemble")
     p.add_argument("--top-k", type=int, default=None, help="Override K for Hits@K; default is meta['top_k'].")
     args = p.parse_args()

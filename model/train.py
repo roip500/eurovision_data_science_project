@@ -150,7 +150,10 @@ def build_hgb_pipeline(numeric_features: List[str], categorical_features: List[s
     )
     from sklearn.preprocessing import FunctionTransformer
     to_float32 = FunctionTransformer(lambda X: np.asarray(X, dtype=np.float32), accept_sparse=False)
-    return Pipeline([("features", ct), ("to_float32", to_float32), ("clf", hgb)])
+    return Pipeline([
+        ("features", ct),
+        ("clf", hgb),
+    ])
 
 
 # -----------------------
