@@ -1,0 +1,7 @@
+{
+  "type": "mean",
+  "models": [
+    "lr",
+    "hgb"
+  ]
+}
